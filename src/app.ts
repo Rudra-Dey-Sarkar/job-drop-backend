@@ -7,7 +7,13 @@ import application from "./routes/application-routes";
 import users from "./routes/users-routes";
 
 const app = express();
-app.use(cors());
+
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200 
+}
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/", auth);
