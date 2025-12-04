@@ -11,6 +11,7 @@ let corsOptions = {
   origin: ["https://job-drop-frontend.vercel.app/", "http://localhost:3000/"],
   optionsSuccessStatus: 200
 }
+
 const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -20,7 +21,6 @@ app.use("/", pages);
 app.use("/", jobs);
 app.use("/", application);
 app.use("/", users);
-
 
 connectDB();
 
