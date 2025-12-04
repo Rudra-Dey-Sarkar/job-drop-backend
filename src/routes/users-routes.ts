@@ -4,8 +4,10 @@ import { retrieveCompany, retrieveCompanyList } from "../controllers/users-contr
 
 const router = Router();
 // company list
-router.get("/companies", retrieveCompanyList);
-// single application
-router.get("/:slug/companies", retrieveCompany);
+router.get("/companies/list", retrieveCompanyList);
+// single list
+router.get("/companies/open/:slug", retrieveCompany);
+// single list
+router.get("/companies/open", auth, retrieveCompany);
 
 export default router;

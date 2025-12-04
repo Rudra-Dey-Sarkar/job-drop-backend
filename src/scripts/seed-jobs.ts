@@ -3,7 +3,6 @@ import fetch from "node-fetch";
 import job, { sectorEnum } from "../models/job";
 import company from "../models/company";
 import dotenv from "dotenv";
-import { JobPayload } from "../types/jobs/module";
 
 dotenv.config();
 
@@ -82,7 +81,7 @@ async function seedJobs() {
 
   const companyInstance = await company.find();
 
-  const jobDataToBeInserted: JobPayload[] = data.map((j) => {
+  const jobDataToBeInserted = data.map((j) => {
 
     const { min, max, currency, duration } = extractCurrencyInformation(j.salary_range);
 
@@ -105,7 +104,7 @@ async function seedJobs() {
         currency: currency,
         duration: duration
       },
-    } as unknown as JobPayload;
+    }
   })
 
   await job.insertMany(jobDataToBeInserted);

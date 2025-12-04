@@ -5,7 +5,7 @@ import { Request, Response } from "express";
 // SAVE PAGE
 export const savePage = async (req: Request, res: Response) => {
     try {
-        const companyInstance = await company.findOne({ slug: req.params.slug });
+        const companyInstance = await company.findOne({ slug: req.user.slug });
         if (!companyInstance){
             return res.status(404).json({ error: "Invalid company slug" });
         }

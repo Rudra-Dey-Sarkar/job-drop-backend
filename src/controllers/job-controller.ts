@@ -5,9 +5,9 @@ import { Request, Response } from "express";
 // ADD JOB
 export const addJob = async (req: Request, res: Response) => {
   try {
-    const companyInstance = await company.findOne({ slug: req.params.slug });
+    const companyInstance = await company.findOne({ slug: req.user.slug });
     if (!companyInstance) {
-      return res.status(404).json({ error: "Invalid company slug" });
+      return res.status(404).json({ error: "Invalid company slug or company does not exist" });
     }
 
     if (!req.body.title) {
@@ -28,6 +28,11 @@ export const addJob = async (req: Request, res: Response) => {
 // EDIT JOB
 export const editJob = async (req: Request, res: Response) => {
   try {
+    console.log(req.body, req.params)
+    const companyInstance = await company.findOne({ slug: req.user.slug });
+    if (!companyInstance) {
+      return res.status(404).json({ error: "Invalid company slug or company does not exist" });
+    }
 
     if (!req.params.id) {
       return res.status(400).json({ error: "Job ID is required" });
@@ -153,6 +158,11 @@ export const deleteJob = async (req: Request, res: Response) => {
 
     if (!req.params.id) {
       return res.status(400).json({ error: "Job ID is required" });
+    }
+
+    const companyInstance = await company.findOne({ slug: req.user.slug });
+    if (!companyInstance) {
+      return res.status(404).json({ error: "Invalid company slug or company does not exist" });
     }
 
     const jobInstance = await job.findOneAndDelete({ _id: req.params.id });

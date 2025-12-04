@@ -8,8 +8,8 @@ router.post("/applications/:id", addApplication);
 // edit application
 router.put("/applications/:id", auth, editApplication);
 // application list
-router.get("/:slug/applications", auth, retrieveApplicationList);
+router.get("/applications/list/:id", auth, retrieveApplicationList);
 // single application
-router.get("/applications/:id", auth, retrieveApplication);
+router.get("/applications/open/:id", auth, retrieveApplication);
 
 export default router;

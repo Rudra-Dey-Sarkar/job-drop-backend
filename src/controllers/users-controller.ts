@@ -37,16 +37,10 @@ export const retrieveCompanyList = async (req: Request, res: Response) => {
 // SINGLE COMPANY
 export const retrieveCompany = async (req: Request, res: Response) => {
   try {
-   
-    if (!req.params.slug) {
-      return res.status(400).json({ error: "Company slug is required" });
-    }
 
-    const companyInstance = await company
-      .findOne({ slug: req.params.slug });
-
+    const companyInstance = await company.findOne({ slug: req.params.slug ?? req.user.slug });
     if (!companyInstance) {
-      return res.status(404).json({ error: "Invalid company slug" });
+      return res.status(404).json({ error: "Invalid company slug or company does not exist" });
     }
 
     const { password: _, ...safeCompany } = companyInstance.toObject();
