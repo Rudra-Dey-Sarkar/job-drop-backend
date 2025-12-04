@@ -7,8 +7,12 @@ import application from "./routes/application-routes";
 import users from "./routes/users-routes";
 import { connectDB } from "./config/db";
 
+let corsOptions = {
+  origin: ["https://job-drop-frontend.vercel.app/", "http://localhost:3000/"],
+  optionsSuccessStatus: 200
+}
 const app = express();
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/", auth);
