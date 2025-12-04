@@ -28,7 +28,6 @@ export const addJob = async (req: Request, res: Response) => {
 // EDIT JOB
 export const editJob = async (req: Request, res: Response) => {
   try {
-    console.log(req.body, req.params)
     const companyInstance = await company.findOne({ slug: req.user.slug });
     if (!companyInstance) {
       return res.status(404).json({ error: "Invalid company slug or company does not exist" });
