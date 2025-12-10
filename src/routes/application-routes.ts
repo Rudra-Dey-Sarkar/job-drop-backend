@@ -4,12 +4,12 @@ import { addApplication, editApplication, retrieveApplication, retrieveApplicati
 
 const router = Router();
 // create application
-router.post("/applications/:id", addApplication);
+router.post("/:id", addApplication);
 // edit application
-router.put("/applications/:id", auth, editApplication);
+router.put("/:id", auth, editApplication);
 // application list
-router.get("/applications/list/:id", auth, retrieveApplicationList);
+router.get("/list/:id", auth, retrieveApplicationList);
 // single application
-router.get("/applications/open/:id", auth, retrieveApplication);
+router.get("/open/:id", auth, retrieveApplication);
 
 export default router;

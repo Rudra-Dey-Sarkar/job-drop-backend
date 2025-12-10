@@ -4,15 +4,15 @@ import { auth } from "../middleware/auth";
 
 const router = Router();
 // create job
-router.post("/jobs", auth, addJob);
+router.post("/", auth, addJob);
 // retrieve job list
-router.get("/jobs/list/:slug", retrieveJobList);
+router.get("/list/:slug", retrieveJobList);
 // retrieve job
-router.get("/jobs/open/:id", retrieveJob);
+router.get("/open/:id", retrieveJob);
 // edit job
-router.put("/jobs/:id", auth, editJob);
+router.put("/:id", auth, editJob);
 // delete job
-router.delete("/jobs/:id", auth, deleteJob);
+router.delete("/:id", auth, deleteJob);
 
 export default router;
 

@@ -4,9 +4,8 @@ import { auth } from "../middleware/auth";
 
 const router = Router();
 // create and edit page
-router.post("/page/edit",auth, savePage);
-// get public page
-router.get("/page/:slug", getPage);
+router.post("/edit",auth, savePage);
+router.get("/:slug", getPage);
 
 export default router;
 
